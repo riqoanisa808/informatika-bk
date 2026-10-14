@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Berpikir Komputasional - Informatika Kelas 10</title>
+<style>
+:root{--bg:#f4f6ff;--card:#fff;--tx:#1e2340;--mut:#6b7094;--pri:#5b5bf0;--pri2:#8a5cf6;--ok:#16a34a;--okb:#dcfce7;--no:#dc2626;--nob:#fee2e2;--bd:#e3e6f5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12142b;--card:#1c1f3d;--tx:#eceefc;--mut:#9aa0cc;--pri:#8486ff;--pri2:#b08cff;--ok:#4ade80;--okb:#12351f;--no:#f87171;--nob:#3b1717;--bd:#2c3059}}
+:root[data-theme="dark"]{--bg:#12142b;--card:#1c1f3d;--tx:#eceefc;--mut:#9aa0cc;--pri:#8486ff;--pri2:#b08cff;--ok:#4ade80;--okb:#12351f;--no:#f87171;--nob:#3b1717;--bd:#2c3059}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;line-height:1.6}
+header{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:32px 16px 56px;text-align:center}
+header h1{margin:0 0 6px;font-size:clamp(1.5rem,5vw,2.2rem)}
+header p{margin:0;opacity:.9}
+main{max-width:860px;margin:-34px auto 40px;padding:0 14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 6px 20px rgba(60,60,160,.08)}
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:6px;margin-bottom:16px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.tabs button{flex:1;border:0;background:none;color:var(--mut);padding:10px 4px;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer}
+.tabs button.on{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff}
+.sec{display:none}.sec.on{display:block}
+h2{margin:0 0 10px;color:var(--pri)}h3{margin:14px 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.pil{border:1px solid var(--bd);border-radius:14px;padding:14px;border-top:5px solid var(--pri)}
+.pil:nth-child(2){border-top-color:#f59e0b}.pil:nth-child(3){border-top-color:#10b981}.pil:nth-child(4){border-top-color:#ec4899}
+.pil b{display:block;margin-bottom:4px}
+code,pre{background:var(--bg);border-radius:8px;font-family:Consolas,monospace}
+pre{padding:12px;overflow-x:auto;margin:8px 0}
+.note{background:var(--bg);border-left:4px solid var(--pri);padding:10px 14px;border-radius:8px;margin:10px 0}
+input[type=text]{width:100%;padding:12px 14px;border-radius:12px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font-size:1rem}
+input[type=text]:focus{outline:none;border-color:var(--pri)}
+.btn{border:0;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:12px 22px;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer}
+.btn.g{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--pri2));transition:width .3s}
+.q{border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px;background:var(--card)}
+.q p{margin:0 0 8px;font-weight:600}
+.o{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;margin:6px 0;cursor:pointer}
+.o:hover{border-color:var(--pri)}
+.o.sel{border-color:var(--pri);background:var(--bg)}
+.o.ok{border-color:var(--ok);background:var(--okb)}.o.no{border-color:var(--no);background:var(--nob)}
+.o b{min-width:22px;color:var(--pri)}
+.locked .o{cursor:default}
+.score{text-align:center}
+.score .n{font-size:3.4rem;font-weight:800;background:linear-gradient(135deg,var(--pri),var(--pri2));-webkit-background-clip:text;background-clip:text;color:transparent}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px 6px;border-bottom:1px solid var(--bd);text-align:left;font-size:.93rem}
+.wrap{overflow-x:auto}
+.muted{color:var(--mut)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🧠 Berpikir Komputasional</h1>
+  <p>Informatika Kelas 10 · Materi &amp; Latihan 20 Soal</p>
+</header>
+<main>
+  <div class="tabs">
+    <button class="on" data-t="materi">📖 Materi</button>
+    <button data-t="kuis">📝 Kuis</button>
+    <button data-t="riwayat">🏆 Nilai</button>
+  </div>
+
+  <section id="materi" class="sec on">
+    <div class="card">
+      <h2>Apa itu Berpikir Komputasional?</h2>
+      <p>Berpikir komputasional (<i>computational thinking</i>) adalah pendekatan menyelesaikan masalah secara sistematis dan logis sehingga solusinya dapat dijalankan oleh manusia maupun komputer. Kita tidak harus menjadi programmer untuk menggunakannya: merencanakan perjalanan, menyusun jadwal, hingga memasak resep pun memakai cara berpikir ini.</p>
+    </div>
+    <div class="card">
+      <h2>Empat Pilar Utama</h2>
+      <div class="grid">
+        <div class="pil"><b>🧩 Dekomposisi</b>Memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah diselesaikan.</div>
+        <div class="pil"><b>🔍 Pengenalan Pola</b>Mencari kesamaan, keteraturan, atau tren pada masalah atau data.</div>
+        <div class="pil"><b>🎯 Abstraksi</b>Memfokuskan pada hal penting dan membuang detail yang tidak relevan.</div>
+        <div class="pil"><b>📋 Algoritma</b>Menyusun langkah-langkah berurutan, jelas, dan logis untuk menyelesaikan masalah.</div>
+      </div>
+      <div class="note"><b>Contoh:</b> Menyelenggarakan pesta ulang tahun. <i>Dekomposisi</i>: undangan, konsumsi, dekorasi. <i>Pola</i>: acara tahun lalu memerlukan kue dan balon. <i>Abstraksi</i>: fokus pada jumlah tamu dan anggaran. <i>Algoritma</i>: urutan persiapan dari H-7 sampai hari acara.</div>
+    </div>
+    <div class="card">
+      <h2>Algoritma</h2>
+      <p>Ciri algoritma yang baik: memiliki <b>input</b> dan <b>output</b>, langkahnya <b>jelas</b> (tidak ambigu), <b>berhingga</b> (pasti berakhir), dan <b>efektif</b>. Algoritma dapat dituliskan sebagai kalimat deskriptif, <b>pseudocode</b>, atau <b>flowchart</b>.</p>
+      <h3>Simbol Flowchart</h3>
+      <ul>
+        <li><b>Oval</b>: awal/akhir (terminator)</li>
+        <li><b>Persegi panjang</b>: proses</li>
+        <li><b>Jajar genjang</b>: input/output</li>
+        <li><b>Belah ketupat</b>: keputusan (ya/tidak)</li>
+      </ul>
+      <h3>Contoh Pseudocode</h3>
+<pre>MULAI
+  BACA nilai
+  JIKA nilai &gt;= 75 MAKA
+     TULIS "Lulus"
+  SELAIN ITU
+     TULIS "Remedial"
+SELESAI</pre>
+      <h3>Algoritma Umum</h3>
+      <p><b>Pencarian</b> (searching) untuk menemukan data, dan <b>pengurutan</b> (sorting) untuk menyusun data dari kecil ke besar atau sebaliknya.</p>
+    </div>
+    <div class="card">
+      <h2>Evaluasi &amp; Debugging</h2>
+      <p>Setelah solusi dibuat, kita menguji dan memperbaikinya. <b>Debugging</b> adalah proses menemukan dan memperbaiki kesalahan (<i>bug</i>) pada algoritma atau program.</p>
+      <div class="row" style="margin-top:12px"><button class="btn" id="goKuis">Mulai Kuis →</button></div>
+    </div>
+  </section>
+
+  <section id="kuis" class="sec">
+    <div class="card">
+      <h2>Identitas</h2>
+      <input type="text" id="nama" placeholder="Masukkan nama lengkap kamu" maxlength="40" autocomplete="name">
+      <p class="muted" style="margin:8px 0 0;font-size:.88rem">Nama, jawaban, dan nilai tersimpan otomatis di perangkat ini.</p>
+    </div>
+    <div class="card" id="prog">
+      <div class="row" style="justify-content:space-between"><b id="progTx">0/20 terjawab</b><span class="muted">5 poin per soal</span></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+    <div id="hasil"></div>
+    <div id="soal"></div>
+    <div class="row" id="aksi">
+      <button class="btn" id="kirim">Kirim Jawaban</button>
+      <button class="btn g" id="reset">Ulangi Kuis</button>
+    </div>
+  </section>
+
+  <section id="riwayat" class="sec">
+    <div class="card">
+      <h2>Riwayat Nilai</h2>
+      <div class="wrap" id="tabel"></div>
+      <div class="row" style="margin-top:12px"><button class="btn g" id="hapus">Hapus Riwayat</button></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const Q=[
+["Berpikir komputasional adalah...",["Cara menghafal bahasa pemrograman","Pendekatan menyelesaikan masalah secara sistematis dan logis sehingga solusinya dapat dijalankan komputer","Kemampuan merakit komputer","Kemampuan mengetik dengan cepat","Penggunaan internet untuk mencari informasi"],1],
+["Berikut yang BUKAN termasuk pilar berpikir komputasional adalah...",["Dekomposisi","Abstraksi","Pengenalan pola","Algoritma","Format ulang (reformat)"],4],
+["Memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah diselesaikan disebut...",["Dekomposisi","Abstraksi","Pengenalan pola","Debugging","Evaluasi"],0],
+["Mencari kesamaan atau keteraturan pada suatu masalah atau data disebut...",["Dekomposisi","Algoritma","Pengenalan pola","Abstraksi","Simulasi"],2],
+["Menyaring detail yang tidak penting dan fokus pada informasi utama disebut...",["Dekomposisi","Pengenalan pola","Evaluasi","Abstraksi","Kompilasi"],3],
+["Langkah-langkah berurutan, jelas, dan logis untuk menyelesaikan masalah disebut...",["Abstraksi","Algoritma","Pola","Dekomposisi","Basis data"],1],
+["Panitia menyusun daftar tugas: undangan, konsumsi, dan dekorasi untuk sebuah pesta. Ini merupakan penerapan...",["Abstraksi","Pengenalan pola","Algoritma","Debugging","Dekomposisi"],4],
+["Peta jalur MRT hanya menampilkan stasiun dan garis rute tanpa bentuk jalan asli. Ini penerapan...",["Abstraksi","Dekomposisi","Pengurutan","Enkripsi","Debugging"],0],
+["Barisan 3, 6, 12, 24, ... Suku berikutnya adalah...",["30","36","42","48","60"],3],
+["Simbol belah ketupat pada flowchart digunakan untuk...",["Awal/akhir program","Proses perhitungan","Input/output","Pengambilan keputusan","Penghubung halaman"],3],
+["Berikut ciri algoritma yang baik, KECUALI...",["Memiliki input dan output","Langkahnya jelas dan tidak ambigu","Berhingga (pasti berakhir)","Efektif dalam menyelesaikan masalah","Boleh berjalan tanpa pernah berhenti"],4],
+["x = 5, y = 3, x = x + y, TULIS x. Output yang dihasilkan adalah...",["3","5","8","15","53"],2],
+["Proses menemukan dan memperbaiki kesalahan pada program disebut...",["Compiling","Debugging","Coding","Formatting","Browsing"],1],
+["Aplikasi email menandai surel spam berdasarkan kata yang sering muncul pada spam sebelumnya. Ini menerapkan...",["Dekomposisi","Abstraksi","Pengenalan pola","Algoritma","Evaluasi"],2],
+["Aturan: JIKA nilai >= 75 TULIS \"Lulus\", SELAIN ITU TULIS \"Remedial\". Jika nilai = 70, outputnya...",["Lulus","Remedial","Lulus dengan pujian","Mengulang tahun","Tidak ada output"],1],
+["Urutan pilar berpikir komputasional yang umum digunakan adalah...",["Algoritma, abstraksi, pola, dekomposisi","Pola, algoritma, dekomposisi, abstraksi","Abstraksi, algoritma, dekomposisi, pola","Dekomposisi, pengenalan pola, abstraksi, algoritma","Algoritma, dekomposisi, abstraksi, pola"],3],
+["total = 0; ulangi i dari 1 sampai 4: total = total + i. Nilai akhir total adalah...",["10","6","4","8","24"],0],
+["Manfaat utama abstraksi dalam memecahkan masalah adalah...",["Membuat masalah menjadi lebih rumit","Memfokuskan pada informasi penting sehingga masalah lebih sederhana","Menambah semua detail ke dalam solusi","Mempercepat internet","Menghapus seluruh data"],1],
+["Algoritma yang menyusun kartu dari angka terkecil ke terbesar termasuk algoritma...",["Pencarian","Enkripsi","Pengurutan","Kompresi","Rendering"],2],
+["Contoh penerapan berpikir komputasional dalam kehidupan sehari-hari adalah...",["Menghafal rute secara acak","Menunggu bantuan tanpa berusaha","Mengandalkan firasat semata","Menghindari masalah","Menyusun langkah mencari rute tercepat dengan aturan yang jelas"],4]
+];
+const L="abcde",KEY="bk10_state";
+// === GANTI dengan URL Web App Apps Script kamu (berakhiran /exec) ===
+const SCRIPT_URL="PASTE_URL_APPS_SCRIPT_DI_SINI";
+let S={nama:"",jwb:Array(20).fill(null),done:false,hasil:null,riwayat:[]};
+try{const r=localStorage.getItem(KEY);if(r){const p=JSON.parse(r);if(p&&Array.isArray(p.jwb))S=Object.assign(S,p)}}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function tab(t){document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id===t));
+ document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+$('goKuis').onclick=()=>tab('kuis');
+function renderSoal(){
+ $('soal').innerHTML=Q.map((q,i)=>`<div class="q ${S.done?'locked':''}"><p>${i+1}. ${q[0]}</p>`+q[1].map((o,j)=>{
+  let c='o';if(S.jwb[i]===j)c+=' sel';
+  if(S.done){if(j===q[2])c='o ok';else if(S.jwb[i]===j)c='o no'}
+  return `<div class="${c}" data-i="${i}" data-j="${j}"><b>${L[j].toUpperCase()}.</b><span>${o}</span></div>`}).join('')+`</div>`).join('');
+ document.querySelectorAll('.o').forEach(el=>el.onclick=()=>{if(S.done)return;S.jwb[+el.dataset.i]=+el.dataset.j;save();renderSoal();prog()});
+ $('kirim').style.display=S.done?'none':'';
+ $('prog').style.display=S.done?'none':'';
+}
+function prog(){const n=S.jwb.filter(x=>x!==null).length;$('progTx').textContent=n+"/20 terjawab";$('progBar').style.width=n*5+"%"}
+function renderHasil(){
+ if(!S.done||!S.hasil){$('hasil').innerHTML='';return}
+ const h=S.hasil,m=h.nilai>=90?"Luar biasa! 🎉":h.nilai>=75?"Bagus, pertahankan! 👏":h.nilai>=60?"Cukup baik, baca materi lagi ya 📖":"Ayo belajar lagi, kamu pasti bisa! 💪";
+ $('hasil').innerHTML=`<div class="card score"><div class="muted">Hasil untuk <b>${esc(h.nama)}</b></div><div class="n">${h.nilai}</div><div>Benar ${h.benar} dari 20 soal</div><p>${m}</p><p class="muted" style="font-size:.88rem">Pembahasan: hijau = jawaban benar, merah = jawabanmu yang salah.</p><p id="stat" style="font-weight:600">${S.terkirim?'✅ Nilai terkirim ke guru.':'⚠️ Nilai belum terkirim ke guru.'}</p>${S.terkirim?'':'<button class="btn g" id="kirimUlang">Kirim Ulang</button>'}</div>`;
+ const kb=$('kirimUlang');if(kb)kb.onclick=kirimNilai;
+}
+function setStat(t){const e=$('stat');if(e)e.textContent=t}
+async function kirimNilai(){
+ const h=S.hasil;if(!h)return;
+ if(!SCRIPT_URL.startsWith("https://script.google.com/")){setStat("⚠️ URL Apps Script belum diisi di file HTML.");return}
+ setStat("⏳ Mengirim nilai ke guru...");
+ try{
+  await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({nama:h.nama,nilai:h.nilai,benar:h.benar})});
+  S.terkirim=true;save();renderHasil();
+ }catch(e){setStat("⚠️ Gagal terkirim. Cek internet lalu tekan Kirim Ulang.")}
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function renderTabel(){
+ const r=S.riwayat;
+ $('tabel').innerHTML=r.length?`<table><tr><th>#</th><th>Nama</th><th>Nilai</th><th>Benar</th><th>Waktu</th></tr>`+r.slice().reverse().map((x,i)=>`<tr><td>${r.length-i}</td><td>${esc(x.nama)}</td><td><b>${x.nilai}</b></td><td>${x.benar}/20</td><td>${esc(x.waktu)}</td></tr>`).join('')+`</table>`:'<p class="muted">Belum ada nilai. Kerjakan kuis dulu ya!</p>';
+}
+$('nama').value=S.nama||"";
+$('nama').oninput=e=>{S.nama=e.target.value;save()};
+$('kirim').onclick=()=>{
+ const nama=S.nama.trim();
+ if(!nama){alert("Isi nama terlebih dahulu.");$('nama').focus();return}
+ const k=S.jwb.filter(x=>x===null).length;
+ if(k&&!confirm(k+" soal belum dijawab. Tetap kirim?"))return;
+ const benar=Q.reduce((a,q,i)=>a+(S.jwb[i]===q[2]?1:0),0);
+ const w=new Date().toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'});
+ S.hasil={nama,benar,nilai:benar*5,waktu:w};S.riwayat.push(S.hasil);S.done=true;S.terkirim=false;save();
+ renderSoal();renderHasil();renderTabel();scrollTo({top:0,behavior:'smooth'});kirimNilai();
+};
+$('reset').onclick=()=>{if(!S.done&&S.jwb.some(x=>x!==null)&&!confirm("Hapus semua jawaban dan mulai ulang?"))return;
+ S.jwb=Array(20).fill(null);S.done=false;S.hasil=null;save();renderSoal();renderHasil();prog()};
+$('hapus').onclick=()=>{if(confirm("Hapus seluruh riwayat nilai?")){S.riwayat=[];save();renderTabel()}};
+renderSoal();renderHasil();renderTabel();prog();
+</script>
+</body>
+</html>
