@@ -159,7 +159,7 @@ const Q=[
 ];
 const L="abcde",KEY="bk10_state";
 // === GANTI dengan URL Web App Apps Script kamu (berakhiran /exec) ===
-const SCRIPT_URL="PASTE_URL_APPS_SCRIPT_DI_SINI";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbydhL5k4sDuNX2XsWAuhloWqPUiAZkXa1tGkzin4fiTT_8eidh_8TuQ1Tr74gsAl7pD/exec";
 let S={nama:"",jwb:Array(20).fill(null),done:false,hasil:null,riwayat:[]};
 try{const r=localStorage.getItem(KEY);if(r){const p=JSON.parse(r);if(p&&Array.isArray(p.jwb))S=Object.assign(S,p)}}catch(e){}
 const $=id=>document.getElementById(id);
